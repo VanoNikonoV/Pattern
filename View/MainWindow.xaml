@@ -7,9 +7,26 @@
         mc:Ignorable="d"
         Title="Pattern" Height="450" Width="800">
     <Grid>
-       
-        <DataGrid>
-            
+        
+        
+        
+        <DataGrid Grid.Row="0"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Reposipory}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding NameClass}"
+                                    Header="Класс"
+                                    Width="150"/>
+                <DataGridTextColumn Binding="{Binding LivingEnvironment}"
+                                    Header="Среда обитания"
+                                    Width="150"/>
+                <DataGridTextColumn Binding="{Binding Size}"
+                                    Header="Численность"
+                                    Width="100"/>
+                <DataGridTextColumn Binding="{Binding Detachment}"
+                                    Header="Отряд"
+                                    Width="100"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>
