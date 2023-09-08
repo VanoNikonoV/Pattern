@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern", "Pattern.csproj", "{839A882F-3DDA-43F5-AE91-70E30553259D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternConsole", "..\PatternConsole\PatternConsole.csproj", "{FA29D890-0657-4DCC-87CC-C8BC5D66D6C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{839A882F-3DDA-43F5-AE91-70E30553259D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839A882F-3DDA-43F5-AE91-70E30553259D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839A882F-3DDA-43F5-AE91-70E30553259D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839A882F-3DDA-43F5-AE91-70E30553259D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA29D890-0657-4DCC-87CC-C8BC5D66D6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA29D890-0657-4DCC-87CC-C8BC5D66D6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA29D890-0657-4DCC-87CC-C8BC5D66D6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA29D890-0657-4DCC-87CC-C8BC5D66D6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8381F0AD-8E51-4377-A3A3-AB5ECDF8022D}
+	EndGlobalSection
+EndGlobal
