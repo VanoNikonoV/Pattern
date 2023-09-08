@@ -3,16 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:local="clr-namespace:Pattern.View"
         mc:Ignorable="d"
-        Title="Pattern" Height="450" Width="800">
+        Title="Pattern" Height="450" Width="550">
     <Grid>
-        
-        
-        
-        <DataGrid Grid.Row="0"
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="515"/>
+        </Grid.ColumnDefinitions>
+
+        <Button VerticalAlignment="Top" 
+                HorizontalAlignment="Center"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                IsDefault="True"
+                Width="30" Height="30"
+                Cursor="Hand" 
+                Margin="0 5"
+                Padding="0" 
+                ToolTip="Добавить животное"
+                Command="{Binding AddCommand}">
+
+                    <materialDesign:PackIcon Kind="AddCircleOutline" 
+                                     Width="25" Height="25" 
+                                     HorizontalAlignment="Center" 
+                                     VerticalAlignment="Center" 
+                                     Foreground="#FF226DE7"/>   
+        </Button>
+
+        <DataGrid Grid.Column="1"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Reposipory}">
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NameClass}"
                                     Header="Класс"

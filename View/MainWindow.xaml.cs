@@ -13,7 +13,9 @@ namespace Pattern.View
         public MainWindow()
         {
             InitializeComponent();
+
             ViewModel = new MainWindowViewModel();
+
             DataContext = ViewModel;
         }
     }

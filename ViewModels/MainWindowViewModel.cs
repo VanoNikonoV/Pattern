@@ -1,4 +1,5 @@
-﻿using Pattern.Models;
+﻿using Pattern.Commands;
+using Pattern.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,6 +32,15 @@ namespace Pattern.ViewModels
                     default: Reposipory.Add(new NullChordata()); break;
                 }
             }
+        }
+
+        private RelayCommand addCommand = null;
+
+        public RelayCommand AddCommand => addCommand ?? (addCommand = new RelayCommand(AddChordata));
+
+        private void AddChordata()
+        {
+            
         }
     }
 }
