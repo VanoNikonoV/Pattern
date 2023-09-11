@@ -8,7 +8,7 @@
         xmlns:vw="clr-namespace:Pattern.ViewModels"
         mc:Ignorable="d"
         Title="Добавление нового существа" 
-        Height="110" Width="500" WindowStyle="None">
+        Height="120" Width="500" WindowStyle="None">
     <!--<Window.Resources>
         <vw:AddChordataViewModel x:Key="AddChordata"/>
     </Window.Resources>-->
@@ -16,7 +16,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" 
@@ -54,7 +54,8 @@
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal" 
                     HorizontalAlignment="Center"
-                    DataContext="{Binding}">
+                    DataContext="{Binding}"
+                    Margin="0,0,0,30">
 
             <TextBox Text="{Binding Path=NameClass, 
               UpdateSourceTrigger=PropertyChanged, 
@@ -62,7 +63,7 @@
               ValidatesOnDataErrors=True}"
               materialDesign:HintAssist.Hint="Имя класса" 
               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-              Margin="5 5" Width="100" Height="45"/>
+              Margin="0 0 5 0" Width="100" Height="45"/>
 
             <TextBox Text="{Binding Path=LivingEnvironment, 
               UpdateSourceTrigger=PropertyChanged, 
@@ -70,7 +71,7 @@
               ValidatesOnDataErrors=True}"
               materialDesign:HintAssist.Hint="Среда обитания" 
               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-              Margin="5 5" Width="100" Height="45"/>
+              Margin="5,0,5,0" Width="100" Height="45"/>
 
             <TextBox Text="{Binding Path=Size, 
               UpdateSourceTrigger=PropertyChanged, 
@@ -78,7 +79,7 @@
               ValidatesOnDataErrors=True}"
               materialDesign:HintAssist.Hint="Численность" 
               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-              Margin="5 5" Width="100" Height="45"/>
+              Margin="5,0,5,0" Width="100" Height="45"/>
 
             <TextBox Text="{Binding Path=Detachment, 
               UpdateSourceTrigger=PropertyChanged, 
@@ -86,7 +87,7 @@
               ValidatesOnDataErrors=True}"
               materialDesign:HintAssist.Hint="Отряд" 
               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-              Margin="5 5" Width="100" Height="45"/>
+              Margin="5,0,5,0" Width="100" Height="45"/>
 
         </StackPanel>
         
