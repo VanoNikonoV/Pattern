@@ -1,11 +1,13 @@
 ﻿using Pattern.Commands;
 using Pattern.Models;
+using Pattern.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Pattern.ViewModels
 {
@@ -40,7 +42,19 @@ namespace Pattern.ViewModels
 
         private void AddChordata()
         {
-            
+            AddChordataWindow addChordataWindow = new AddChordataWindow()
+            { Owner = Application.Current.MainWindow };
+
+            AddChordataViewModel add = new(addChordataWindow); 
+
+            addChordataWindow.DataContext = add;
+
+            addChordataWindow.ShowDialog();
+
+            if (addChordataWindow.DialogResult == true)
+            {
+                Reposipory.Add(add.Chordata);
+            }
         }
     }
 }

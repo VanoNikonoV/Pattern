@@ -34,7 +34,8 @@
 
         <DataGrid Grid.Column="1"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Reposipory}">
+                  ItemsSource="{Binding Reposipory, 
+                  UpdateSourceTrigger=PropertyChanged}">
             
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NameClass}"
