@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Pattern.ViewModels
 {
-    public class AddChordataViewModel
+    public class AddChordataViewModel:ViewModel
     {
         /// <summary>
         /// Имя класса 
@@ -36,10 +36,39 @@ namespace Pattern.ViewModels
         public IChordata Chordata { get => chordata; } 
 
         private Window _window;
+        /// <summary>
+        /// Массив доступных классов
+        /// </summary>
+        public string[] NameClassTypeOpions { get => nameClassTypeOpions;  }
+
+        private readonly string[] nameClassTypeOpions;
+
+        private string nameClassType;
+
+        public string NameClassType 
+        { 
+            get { return nameClassType; }
+            set
+            {
+                if (nameClassType == value || String.IsNullOrEmpty(value)) return;
+                nameClassType = value;
+
+                //if (nameClassType == NameClassOpions[0])
+                //{ 
+                //    nameClassType = NameClassOpions[0];
+                //};
+                base.OnPropertyChanged(nameof(NameClassType));
+
+            }
+        }
 
         public AddChordataViewModel(Window window)
         {
             this._window = window;
+
+            nameClassTypeOpions = new string[] { "Земноводные", "Млекопитающие", "Птицы", "Неизвестный тип"};
+
+            nameClassType = nameClassTypeOpions[1];
         }
 
         #region Команды
