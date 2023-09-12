@@ -15,8 +15,4 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PatternConsole\PatternConsole.csproj" />
-  </ItemGroup>
-
 </Project>

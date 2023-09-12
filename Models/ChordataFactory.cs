@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Pattern.Models
 {
     public static class ChordataFactory
     {
-        public static IChordata GetChordata(string NameClass, string LivingEnvironment, int Size, string Detachment)
+        //private readonly List<Type> chotdataType = new List<Type>()
+        //{
+        //    typeof(Mammals),
+        //    typeof(Amphibians),
+        //    typeof(Birds),
+        //    typeof(NullChordata)
+        //};
+
+        public static IChordata GetChordata(string NameClass)
         {
-            switch (NameClass) 
-            {
-                case "Млекопитающие": return new Mammals(NameClass, LivingEnvironment, Size, Detachment);
 
-                case "Птицы": return new Birds(NameClass, LivingEnvironment, Size, Detachment);
+            //System.Runtime.Remoting.ObjectHandle oh =
+            //Activator.CreateInstanceFrom(Assembly.GetEntryAssembly().CodeBase,
+            //                             typeof(Mammals).FullName);
 
-                case "Земноводные": return new Amphibians(NameClass, LivingEnvironment, Size, Detachment);
+            //// Call an instance method defined by the SomeType type using this object.
+            //IChordata st = (IChordata)oh.Unwrap();
 
-                default: return new NullChordata();
-            }
+            //return st;
+
+            return Activator.CreateInstance(typeof(Mammals)) as IChordata;
         }
 
     }

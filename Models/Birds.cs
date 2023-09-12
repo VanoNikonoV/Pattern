@@ -8,6 +8,10 @@ namespace Pattern.Models
 {
     public class Birds:IChordata
     {
+        public Birds()
+        {
+            
+        }
         public Birds(string NameClass, string LivingEnvironment, int Size, string Detachment)
         {
             this.NameClass = NameClass;
