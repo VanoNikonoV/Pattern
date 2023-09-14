@@ -1,37 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Pattern.Models
 {
+    /// <summary>
+    /// Статические класс содержащий фабричный метод для типов хордовые
+    /// </summary>
     public static class ChordataFactory
     {
-        //private readonly List<Type> chotdataType = new List<Type>()
-        //{
-        //    typeof(Mammals),
-        //    typeof(Amphibians),
-        //    typeof(Birds),
-        //    typeof(NullChordata)
-        //};
-
-        public static IChordata GetChordata(string NameClass)
+        /// <summary>
+        /// Фабричный метод
+        /// </summary>
+        /// <param name="NameClass">Type требуемого класса</param>
+        /// <returns>Тип хордовые</returns>
+        public static IChordata GetChordata(Type NameClass)
         {
-
-            //System.Runtime.Remoting.ObjectHandle oh =
-            //Activator.CreateInstanceFrom(Assembly.GetEntryAssembly().CodeBase,
-            //                             typeof(Mammals).FullName);
-
-            //// Call an instance method defined by the SomeType type using this object.
-            //IChordata st = (IChordata)oh.Unwrap();
-
-            //return st;
-
-            return Activator.CreateInstance(typeof(Mammals)) as IChordata;
+            return Activator.CreateInstance(NameClass) as IChordata;
         }
-
     }
 }

@@ -57,14 +57,24 @@
                     DataContext="{Binding}"
                     Margin="0,0,0,30">
 
-            <TextBox x:Name="NameClassTextBox"
+            <ComboBox HorizontalAlignment="Right" 
+                Width="140"
+                Margin="0 9 5 0"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                ItemsSource="{Binding NameClassTypeOpions, 
+                UpdateSourceTrigger=PropertyChanged}" 
+                SelectedItem="{Binding NameClassType}"/>
+                <!--SelectedIndex="0"-->
+                
+
+            <!--<TextBox x:Name="NameClassTextBox"
                       Text="{Binding Path=NameClass, 
                       UpdateSourceTrigger=PropertyChanged, 
                       Mode=TwoWay,
                       ValidatesOnDataErrors=True}"
                       materialDesign:HintAssist.Hint="Имя класса" 
                       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                      Margin="0 0 5 0" Width="100" Height="45"/>
+                      Margin="0 0 5 0" Width="100" Height="45"/>-->
 
             <TextBox x:Name="LivingEnvironmentTextBox"
                       Text="{Binding Path=LivingEnvironment, 
