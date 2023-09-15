@@ -21,9 +21,9 @@ namespace Pattern.ViewModels
     {
         public ChordataContext? ChordataContext { get; private set; }
 
-        private ObservableCollection<IChordata>? reposipory;
+        private ObservableCollection<Chordata>? reposipory;
 
-        public ObservableCollection<IChordata>? Reposipory 
+        public ObservableCollection<Chordata>? Reposipory 
         { 
             get 
             {  
@@ -40,25 +40,25 @@ namespace Pattern.ViewModels
         {
             ChordataContext = new();
 
-            ChordataContext.Database.EnsureCreatedAsync().Wait();
+            ChordataContext.Database.EnsureCreated();
 
             //this.reposipory = new ObservableCollection<IChordata>();
 
-            Random random = new Random();
+            //Random random = new Random();
 
-            for (int i = 0; i < 15; i++)
-            {
-                switch (random.Next(4))
-                {
-                    case 0: reposipory.Add(new Mammals("Млекопитающие", "Суша", 6500, "Лев")); break;
+            //for (int i = 0; i < 15; i++)
+            //{
+            //    switch (random.Next(4))
+            //    {
+            //        case 0: reposipory.Add(new Mammals("Млекопитающие", "Суша", 6500, "Лев")); break;
 
-                    case 1: reposipory.Add(new Birds("Птицы", "Воздух", 8400, "Ворона")); break;
+            //        case 1: reposipory.Add(new Birds("Птицы", "Воздух", 8400, "Ворона")); break;
 
-                    case 2: reposipory.Add(new Amphibians("Земноводные", "Суша", 4578, "Питон")); break;
+            //        case 2: reposipory.Add(new Amphibians("Земноводные", "Суша", 4578, "Питон")); break;
 
-                    default: reposipory.Add(new NullChordata()); break;
-                }
-            }
+            //        default: reposipory.Add(new NullChordata()); break;
+            //    }
+            //}
         }
 
         private RelayCommand addCommand = null;

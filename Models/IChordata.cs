@@ -3,27 +3,27 @@
     /// <summary>
     /// Тип хордовые содержит в себе классы существ
     /// </summary>
-    public interface IChordata
+    public abstract class Chordata
     {
         /// <summary>
         /// Имя класса 
         /// </summary>
-        string NameClass { get; set; }
+        public string NameClass { get; set; }
 
         /// <summary>
         /// Среда обитания
         /// </summary>
-        string LivingEnvironment { get; set; }
+        public string LivingEnvironment { get; set; }
 
         /// <summary>
         /// Численность существ в классе
         /// </summary>
-        int Size { get; set; }
+        public int Size { get; set; }
         /// <summary>
         /// Отряд
         /// </summary>
-        string Detachment { get; set; }
+        public string Detachment { get; set; }
 
-        int ID { get; set; }
+        public int ID { get; set; }
     }
 }
