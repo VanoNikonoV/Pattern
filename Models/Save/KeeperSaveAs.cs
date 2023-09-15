@@ -14,7 +14,7 @@ namespace Pattern.Models.Save
             this.formatFile = formatFile;
         }
 
-        public virtual void SaveChordata(IChordata animal)
+        public virtual void SaveChordata(Chordata animal)
         {
             throw new NotImplementedException();
         }

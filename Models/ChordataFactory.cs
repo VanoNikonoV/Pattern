@@ -12,9 +12,9 @@ namespace Pattern.Models
         /// </summary>
         /// <param name="NameClass">Type требуемого класса</param>
         /// <returns>Тип хордовые</returns>
-        public static IChordata GetChordata(Type NameClass)
+        public static Chordata GetChordata(Type NameClass)
         {
-            return Activator.CreateInstance(NameClass) as IChordata;
+            return Activator.CreateInstance(NameClass) as Chordata;
         }
     }
 }

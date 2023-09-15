@@ -31,7 +31,7 @@ namespace Pattern.ViewModels
         /// <summary>
         /// Тип хордовые. Нужно вернуть эксземпляр после работы класса
         /// </summary>
-        public IChordata Chordata { get => chordata; }
+        public Chordata Chordata { get => chordata; }
 
         /// <summary>
         /// Коллекчия ключ-значение для заполнения Combobox ключами, 
@@ -84,9 +84,9 @@ namespace Pattern.ViewModels
 
         #endregion
 
-        private string nameClassType = "Млекопитающие"; //начальное значение
+        private string nameClassType = null; 
 
-        private IChordata chordata = null;
+        private Chordata chordata = null;
 
         private Window _window;
 
@@ -104,6 +104,8 @@ namespace Pattern.ViewModels
             };
 
             NameClassTypeOpions = TypesForFactory.Keys;
+
+            nameClassType = "Млекопитающие"; //начальное значение
         }
 
         #region Команды

@@ -6,13 +6,12 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:local="clr-namespace:Pattern.View"
         mc:Ignorable="d"
-        Title="Pattern" Height="450" Width="750">
+        Title="Pattern" Height="450" Width="800">
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35"/>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="515"/>
+            <ColumnDefinition Width="550"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Vertical" 
@@ -147,7 +146,7 @@
 
                 <DataGridTextColumn Binding="{Binding ID}" 
                                     Header="ID"
-                                    Width="30"
+                                    Width="50"
                                     IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding NameClass}"
                                     Header="Класс"

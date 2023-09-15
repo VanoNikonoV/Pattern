@@ -2,6 +2,6 @@
 {
     public interface IChordataSave
     {
-        void SaveChordata(IChordata animal);
+        void SaveChordata(Chordata animal);
     }
 }

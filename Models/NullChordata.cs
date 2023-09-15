@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Pattern.Models
 {
-    internal class NullChordata:IChordata
+    internal class NullChordata:Chordata
     {
-        public NullChordata()
+        public NullChordata() 
         {
             this.NameClass = "Неизвестный класс";
             this.LivingEnvironment = "Неизвестная среда";

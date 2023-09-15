@@ -8,7 +8,7 @@ namespace Pattern.DataSource
     {
         public ChordataContext() {   }
 
-        public DbSet<IChordata> Chordata { get; set; }
+        public DbSet<Chordata> Chordata { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,12 +18,17 @@ namespace Pattern.DataSource
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Birds>();
+            modelBuilder.Entity<Amphibians>();
+            modelBuilder.Entity<Mammals>();
+            modelBuilder.Entity<NullChordata>();
+
             //Имя таблицы в БД
-            modelBuilder.Entity<IChordata>()
+            modelBuilder.Entity<Chordata>()
                 .ToTable("chordata");
 
             //Имена столбцов в БД и максимальная длина
-            modelBuilder.Entity<IChordata>(bd =>
+            modelBuilder.Entity<Chordata>(bd =>
             {
                 bd.Property(i => i.ID).HasColumnName("id_chordata");
                 bd.Property(i => i.NameClass).HasColumnName("name_classes").HasMaxLength(50);
