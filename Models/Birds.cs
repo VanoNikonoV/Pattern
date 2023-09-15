@@ -19,7 +19,7 @@ namespace Pattern.Models
             this.Size = Size;
             this.Detachment = Detachment;
         }
-
+        public int ID { get; set; }
         public string NameClass { get; set; }
         public string LivingEnvironment { get; set; }
         public int Size { get; set; }

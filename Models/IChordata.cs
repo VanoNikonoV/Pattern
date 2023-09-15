@@ -23,5 +23,7 @@
         /// Отряд
         /// </summary>
         string Detachment { get; set; }
+
+        int ID { get; set; }
     }
 }

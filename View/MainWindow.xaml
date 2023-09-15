@@ -144,6 +144,11 @@
                   CanUserAddRows="False">
             
             <DataGrid.Columns>
+
+                <DataGridTextColumn Binding="{Binding ID}" 
+                                    Header="ID"
+                                    Width="30"
+                                    IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding NameClass}"
                                     Header="Класс"
                                     Width="150"/>
