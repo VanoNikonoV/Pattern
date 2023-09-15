@@ -18,24 +18,54 @@ namespace Pattern.DataSource
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Birds>();
-            modelBuilder.Entity<Amphibians>();
-            modelBuilder.Entity<Mammals>();
-            modelBuilder.Entity<NullChordata>();
-
             //Имя таблицы в БД
             modelBuilder.Entity<Chordata>()
                 .ToTable("chordata");
 
-            //Имена столбцов в БД и максимальная длина
-            modelBuilder.Entity<Chordata>(bd =>
+            modelBuilder.Entity<Birds>(bd =>
             {
-                bd.Property(i => i.ID).HasColumnName("id_chordata");
+                bd.Property(i => i.Id).HasColumnName("id_chordata");
                 bd.Property(i => i.NameClass).HasColumnName("name_classes").HasMaxLength(50);
                 bd.Property(i => i.LivingEnvironment).HasColumnName("living_environment").HasMaxLength(50);
                 bd.Property(i => i.Size).HasColumnName("size").HasMaxLength(20);
                 bd.Property(i => i.Detachment).HasColumnName("detachment").HasMaxLength(50);
             });
+            modelBuilder.Entity<Amphibians>(bd =>
+            {
+                bd.Property(i => i.Id).HasColumnName("id_chordata");
+                bd.Property(i => i.NameClass).HasColumnName("name_classes").HasMaxLength(50);
+                bd.Property(i => i.LivingEnvironment).HasColumnName("living_environment").HasMaxLength(50);
+                bd.Property(i => i.Size).HasColumnName("size").HasMaxLength(20);
+                bd.Property(i => i.Detachment).HasColumnName("detachment").HasMaxLength(50);
+            });
+            modelBuilder.Entity<Mammals>(bd =>
+            {
+                bd.Property(i => i.Id).HasColumnName("id_chordata");
+                bd.Property(i => i.NameClass).HasColumnName("name_classes").HasMaxLength(50);
+                bd.Property(i => i.LivingEnvironment).HasColumnName("living_environment").HasMaxLength(50);
+                bd.Property(i => i.Size).HasColumnName("size").HasMaxLength(20);
+                bd.Property(i => i.Detachment).HasColumnName("detachment").HasMaxLength(50);
+            });
+            modelBuilder.Entity<NullChordata>(bd =>
+            {
+                bd.Property(i => i.Id).HasColumnName("id_chordata");
+                bd.Property(i => i.NameClass).HasColumnName("name_classes").HasMaxLength(50);
+                bd.Property(i => i.LivingEnvironment).HasColumnName("living_environment").HasMaxLength(50);
+                bd.Property(i => i.Size).HasColumnName("size").HasMaxLength(20);
+                bd.Property(i => i.Detachment).HasColumnName("detachment").HasMaxLength(50);
+            });
+
+
+
+            ////Имена столбцов в БД и максимальная длина
+            //modelBuilder.Entity<Chordata>(bd =>
+            //{
+            //    bd.Property(i => i.ID).HasColumnName("id_chordata");
+            //    bd.Property(i => i.NameClass).HasColumnName("name_classes").HasMaxLength(50);
+            //    bd.Property(i => i.LivingEnvironment).HasColumnName("living_environment").HasMaxLength(50);
+            //    bd.Property(i => i.Size).HasColumnName("size").HasMaxLength(20);
+            //    bd.Property(i => i.Detachment).HasColumnName("detachment").HasMaxLength(50);
+            //});
         }
     }
 }

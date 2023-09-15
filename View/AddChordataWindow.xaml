@@ -8,7 +8,7 @@
         xmlns:vw="clr-namespace:Pattern.ViewModels"
         mc:Ignorable="d"
         Title="Добавление нового существа" 
-        Height="120" Width="500" WindowStyle="None">
+        Height="150" Width="500" WindowStyle="None">
     <!--<Window.Resources>
         <vw:AddChordataViewModel x:Key="AddChordata"/>
     </Window.Resources>-->
@@ -63,7 +63,8 @@
                 Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                 ItemsSource="{Binding NameClassTypeOpions, 
                 UpdateSourceTrigger=PropertyChanged}" 
-                SelectedItem="{Binding NameClassType}"/>
+                SelectedItem="{Binding NameClassType, 
+                UpdateSourceTrigger=PropertyChanged}"/>
                 <!--SelectedIndex="0"-->
                 
 

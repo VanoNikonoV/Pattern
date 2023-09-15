@@ -144,7 +144,7 @@
             
             <DataGrid.Columns>
 
-                <DataGridTextColumn Binding="{Binding ID}" 
+                <DataGridTextColumn Binding="{Binding Id}" 
                                     Header="ID"
                                     Width="50"
                                     IsReadOnly="True"/>

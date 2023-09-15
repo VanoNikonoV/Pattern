@@ -31,7 +31,10 @@ namespace Pattern.ViewModels
         /// <summary>
         /// Тип хордовые. Нужно вернуть эксземпляр после работы класса
         /// </summary>
-        public Chordata Chordata { get => chordata; }
+        public Chordata Chordata 
+        { 
+            get => chordata; 
+        }
 
         /// <summary>
         /// Коллекчия ключ-значение для заполнения Combobox ключами, 
@@ -53,25 +56,24 @@ namespace Pattern.ViewModels
 
             set
             {
-                if (nameClassType == value || String.IsNullOrEmpty(value)) return;
-                nameClassType = value;
+                if (nameClassType == null) nameClassType = value;
 
-                if (nameClassType == "Млекопитающие")
+                if (value == "Млекопитающие")
                 {
                     chordata = ChordataFactory.GetChordata(TypesForFactory["Млекопитающие"]);
                     chordata.NameClass = value;
                 };
-                if (nameClassType == "Земноводные")
+                if (value == "Земноводные")
                 {
                     chordata = ChordataFactory.GetChordata(TypesForFactory["Земноводные"]);
                     chordata.NameClass = value;
                 };
-                if (nameClassType == "Птицы")
+                if (value == "Птицы")
                 {
                     chordata = ChordataFactory.GetChordata(TypesForFactory["Птицы"]);
                     chordata.NameClass = value;
                 };
-                if (nameClassType == "Неизвестный тип")
+                if (value == "Неизвестный тип")
                 {
                     chordata = ChordataFactory.GetChordata(TypesForFactory["Неизвестный тип"]);
                     chordata.NameClass = value;
@@ -84,9 +86,9 @@ namespace Pattern.ViewModels
 
         #endregion
 
-        private string nameClassType = null; 
+        private string nameClassType; 
 
-        private Chordata chordata = null;
+        private Chordata chordata;
 
         private Window _window;
 
@@ -105,7 +107,7 @@ namespace Pattern.ViewModels
 
             NameClassTypeOpions = TypesForFactory.Keys;
 
-            nameClassType = "Млекопитающие"; //начальное значение
+            NameClassType = "Млекопитающие"; //начальное значение
         }
 
         #region Команды

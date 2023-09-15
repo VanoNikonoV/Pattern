@@ -40,6 +40,8 @@ namespace Pattern.ViewModels
         {
             ChordataContext = new();
 
+            //ChordataContext.Database.EnsureDeleted();
+
             ChordataContext.Database.EnsureCreated();
 
             //this.reposipory = new ObservableCollection<IChordata>();
@@ -81,7 +83,6 @@ namespace Pattern.ViewModels
                 await ChordataContext.Chordata.AddAsync(add.Chordata);
 
                 await ChordataContext.SaveChangesAsync();
-                //Reposipory.Add(add.Chordata);
             }
         }
 
