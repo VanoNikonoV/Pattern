@@ -80,7 +80,9 @@
                          Padding="0"
                          Margin="3,5,0,5" 
                          ToolTip="Удаление записи"
-                         Command="{Binding DeleteCommand}">
+                         Command="{Binding DeleteCommand}"
+                         CommandParameter="{Binding ElementName=gridViewAnimal, 
+                                            Path=SelectedItem}">
 
                 <materialDesign:PackIcon Kind="CloseOutline" 
                           Width="25" Height="25" 
@@ -150,16 +152,20 @@
                                     IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding NameClass}"
                                     Header="Класс"
-                                    Width="150"/>
+                                    Width="150"
+                                    IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding LivingEnvironment}"
                                     Header="Среда обитания"
-                                    Width="150"/>
+                                    Width="150"
+                                    IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding Size}"
                                     Header="Численность"
-                                    Width="100"/>
+                                    Width="100"
+                                    IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding Detachment}"
                                     Header="Отряд"
-                                    Width="100"/>
+                                    Width="100"
+                                    IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         

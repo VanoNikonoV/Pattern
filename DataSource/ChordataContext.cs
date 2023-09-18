@@ -55,8 +55,6 @@ namespace Pattern.DataSource
                 bd.Property(i => i.Detachment).HasColumnName("detachment").HasMaxLength(50);
             });
 
-
-
             ////Имена столбцов в БД и максимальная длина
             //modelBuilder.Entity<Chordata>(bd =>
             //{

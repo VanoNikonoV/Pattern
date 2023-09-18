@@ -63,10 +63,17 @@ namespace Pattern.ViewModels
             //}
         }
 
-        private RelayCommand addCommand = null;
+        #region Команды
 
+        private RelayCommand addCommand = null;
         public RelayCommand AddCommand => addCommand ?? (addCommand = new RelayCommand(AddChordata));
 
+        private RelayCommandT<Chordata> deleteCommand = null;
+        public RelayCommandT<Chordata> DeleteCommand => deleteCommand ?? (deleteCommand = new RelayCommandT<Chordata>(DeletCustomer, CanDeletCustomer));
+
+        #endregion
+
+        #region Методы
         private async void AddChordata()
         {
             AddChordataWindow addChordataWindow = new AddChordataWindow()
@@ -84,6 +91,19 @@ namespace Pattern.ViewModels
 
                 await ChordataContext.SaveChangesAsync();
             }
+        }
+
+        private bool CanDeletCustomer(Chordata selectedChordata) => selectedChordata != null ? true : false;
+
+        /// <summary>
+        /// Удаляет выделенного клиента и его заказы
+        /// </summary>
+        /// <param name="customer"></param>
+        private void DeletCustomer(Chordata selectedChordata)
+        {
+            ChordataContext.Chordata.Remove(selectedChordata);
+
+            ChordataContext.SaveChangesAsync();
         }
 
         //private void SaveRepo()
@@ -114,6 +134,6 @@ namespace Pattern.ViewModels
 
         //    File.WriteAllText(pathLog, json2);
         //}
-
+        #endregion
     }
 }
