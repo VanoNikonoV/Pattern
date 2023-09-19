@@ -1,7 +1,11 @@
-﻿namespace Pattern.Models.Save
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+
+namespace Pattern.Models.Save
 {
     public interface IChordataSave
     {
-        void SaveChordata(Chordata animal);
+        void SaveAsChordatas(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns);
     }
 }

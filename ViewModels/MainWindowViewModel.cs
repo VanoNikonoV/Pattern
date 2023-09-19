@@ -4,16 +4,10 @@ using Pattern.Commands;
 using Pattern.DataSource;
 using Pattern.Models;
 using Pattern.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Xml;
+using System.Windows.Controls;
+using Pattern.Models.Save;
 
 namespace Pattern.ViewModels
 {
@@ -42,42 +36,38 @@ namespace Pattern.ViewModels
 
             //ChordataContext.Database.EnsureDeleted();
 
-            ChordataContext.Database.EnsureCreated();
-
-            //this.reposipory = new ObservableCollection<IChordata>();
-
-            //Random random = new Random();
-
-            //for (int i = 0; i < 15; i++)
-            //{
-            //    switch (random.Next(4))
-            //    {
-            //        case 0: reposipory.Add(new Mammals("Млекопитающие", "Суша", 6500, "Лев")); break;
-
-            //        case 1: reposipory.Add(new Birds("Птицы", "Воздух", 8400, "Ворона")); break;
-
-            //        case 2: reposipory.Add(new Amphibians("Земноводные", "Суша", 4578, "Питон")); break;
-
-            //        default: reposipory.Add(new NullChordata()); break;
-            //    }
-            //}
+            ChordataContext.Database.EnsureCreated(); 
         }
 
         #region Команды
 
         private RelayCommand addCommand = null;
-        public RelayCommand AddCommand => addCommand ?? (addCommand = new RelayCommand(AddChordata));
+        public RelayCommand AddCommand => addCommand ?? (addCommand = new RelayCommand(AddChordataAsync));
+
 
         private RelayCommandT<Chordata> deleteCommand = null;
-        public RelayCommandT<Chordata> DeleteCommand => deleteCommand ?? (deleteCommand = new RelayCommandT<Chordata>(DeletCustomer, CanDeletCustomer));
+        public RelayCommandT<Chordata> DeleteCommand => 
+            deleteCommand ?? (deleteCommand = new RelayCommandT<Chordata>(DeletChordata, CanDeletChordata));
+
+
+        private RelayCommandT<Chordata> editCommand = null;
+        public RelayCommandT<Chordata> EditCommand => 
+            editCommand ?? (editCommand = new RelayCommandT<Chordata>(EditChordataAsync, CanEditChordata));
+
+
+        private RelayCommandT<ObservableCollection<DataGridColumn>> saveCommand = null;
+        public RelayCommandT<ObservableCollection<DataGridColumn>> SaveCommand =>
+            saveCommand ?? (saveCommand = new RelayCommandT<ObservableCollection<DataGridColumn>>(SaveData));
+
+        
 
         #endregion
 
         #region Методы
-        private async void AddChordata()
+        private async void AddChordataAsync()
         {
             AddChordataWindow addChordataWindow = new AddChordataWindow()
-            { Owner = Application.Current.MainWindow };
+            { Owner = System.Windows.Application.Current.MainWindow };
 
             AddChordataViewModel add = new(addChordataWindow); 
 
@@ -93,47 +83,81 @@ namespace Pattern.ViewModels
             }
         }
 
-        private bool CanDeletCustomer(Chordata selectedChordata) => selectedChordata != null ? true : false;
+        private bool CanDeletChordata(Chordata selectedChordata) => selectedChordata != null ? true : false;
 
         /// <summary>
-        /// Удаляет выделенного клиента и его заказы
+        /// Удаляет выделенное существо
         /// </summary>
         /// <param name="customer"></param>
-        private void DeletCustomer(Chordata selectedChordata)
+        private void DeletChordata(Chordata selectedChordata)
         {
             ChordataContext.Chordata.Remove(selectedChordata);
 
             ChordataContext.SaveChangesAsync();
         }
 
-        //private void SaveRepo()
-        //{
-        //    var saveDlg = new SaveFileDialog
-        //    {
-        //        Filter = "Text files|*.json",
-        //        InitialDirectory = Directory.GetCurrentDirectory()
-        //    };
+        /// <summary>
+        /// Включение/выключение кнопки в зависимость от условий:
+        /// - наличие изменений в данных EntityState.Modified
+        /// </summary>
+        /// <param name="chordata">Выбранное существо</param>
+        /// <returns>true - если сhordata не null, иначе false</returns>
+        private bool CanEditChordata(Chordata chordata)
+        {
+            if (chordata != null)
+            {
+                return ChordataContext.Entry(chordata).State == EntityState.Modified ? true : false;   
+            }
+            return false;
+        }
 
-        //    if (true == saveDlg.ShowDialog())
-        //    {
-        //        string fileName = saveDlg.FileName;
+        /// <summary>
+        /// Метод изменния данных о существе
+        /// </summary>
+        /// <param name="chordata">Выбранное существо</param>
+        private async void EditChordataAsync(Chordata chordata)
+        {
+            ChordataContext.Chordata.Update(chordata);
 
-        //        string json = JsonConvert.SerializeObject(BankRepository, Formatting.Indented);
+            await ChordataContext.SaveChangesAsync();
+        }
 
-        //        File.WriteAllText(fileName, json);
+        private void SaveData(ObservableCollection<DataGridColumn> dataGridColumns)
+        {
+            var saveDlg = new SaveFileDialog
+            {
+                Filter = "Json files|*.json|Документ Word |*.docx",
+                InitialDirectory = Directory.GetCurrentDirectory()
+            };
 
-        //        foreach (var client in BankRepository as List<BankClient<Account>>)
-        //        {
-        //            client.Owner.IsChanged = false;
+            if (true == saveDlg.ShowDialog())
+            {
+                string fileName = saveDlg.FileName;
 
-        //            AllClients.Refresh();
-        //        }
-        //    }
+                switch (saveDlg.FilterIndex)
+                {
+                    case 1:
 
-        //    string json2 = JsonConvert.SerializeObject(BankRepository.LogClient, Formatting.Indented);
+                        KeeperSaveJson keeperSaveJson = new KeeperSaveJson(fileName);
 
-        //    File.WriteAllText(pathLog, json2);
-        //}
+                        keeperSaveJson.SaveAsChordatas(Reposipory, dataGridColumns);
+
+                        break;
+
+                    case 2:
+
+                        KeeperSaveWord keeperSaveWord = new KeeperSaveWord(fileName);
+
+                        keeperSaveWord.SaveAsChordatas(Reposipory, dataGridColumns);
+
+                        break;
+
+                }
+
+            }
+           
+            
+        }
         #endregion
     }
 }
