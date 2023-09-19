@@ -121,12 +121,15 @@ namespace Pattern.ViewModels
 
             await ChordataContext.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// Метод сохранения данных в разных форматах
+        /// </summary>
+        /// <param name="dataGridColumns">Колекция столбцов таблицы</param>
         private void SaveData(ObservableCollection<DataGridColumn> dataGridColumns)
         {
             var saveDlg = new SaveFileDialog
             {
-                Filter = "Json files|*.json|Документ Word |*.docx",
+                Filter = "Документ Word|*.docx|Документ Exel|*.csv|Обычный тексты|*.txt",
                 InitialDirectory = Directory.GetCurrentDirectory()
             };
 
@@ -138,19 +141,27 @@ namespace Pattern.ViewModels
                 {
                     case 1:
 
-                        KeeperSaveJson keeperSaveJson = new KeeperSaveJson(fileName);
-
-                        keeperSaveJson.SaveAsChordatas(Reposipory, dataGridColumns);
-
-                        break;
-
-                    case 2:
-
                         KeeperSaveWord keeperSaveWord = new KeeperSaveWord(fileName);
 
                         keeperSaveWord.SaveAsChordatas(Reposipory, dataGridColumns);
 
                         break;
+
+                    case 2:
+
+                        KeeperSaveExel keeperSaveExel = new KeeperSaveExel(fileName);
+
+                        keeperSaveExel.SaveAsChordatas(Reposipory, dataGridColumns);
+
+                        break;
+
+                    case 3:
+
+                        KeeperSaveTxt keeperSaveTxt = new KeeperSaveTxt(fileName);
+
+                        keeperSaveTxt.SaveAsChordatas(Reposipory, dataGridColumns);
+
+                    break;
 
                 }
 

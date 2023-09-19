@@ -24,6 +24,9 @@
         /// </summary>
         public string Detachment { get; set; }
 
+        /// <summary>
+        /// Порядковый номер записи
+        /// </summary>
         public int Id { get; set; }
     }
 }
