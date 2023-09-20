@@ -157,7 +157,9 @@ namespace Pattern.ViewModels
 
                     case 3:
 
-                        KeeperSaveTxt keeperSaveTxt = new KeeperSaveTxt(fileName);
+                        KeeperSave keeperSaveTxt = KeeperSaveFactory.GetKeeperSave(typeof(KeeperSaveTxt), fileName);
+                        
+                        ///KeeperSaveTxt keeperSaveTxt = new KeeperSaveTxt(fileName);
 
                         keeperSaveTxt.SaveAsChordatas(Reposipory, dataGridColumns);
 

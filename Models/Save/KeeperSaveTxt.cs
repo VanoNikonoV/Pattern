@@ -9,14 +9,12 @@ using System.Windows.Controls;
 
 namespace Pattern.Models.Save
 {
-    public class KeeperSaveTxt : IChordataSave
+    public class KeeperSaveTxt : KeeperSave
     {
         private string nameOfFile;
-        public KeeperSaveTxt(string NameOfFile) 
-        { 
-            this.nameOfFile = NameOfFile;
-        }
-        public void SaveAsChordatas(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
+        public KeeperSaveTxt(string NameOfFile): base(NameOfFile) {  }
+   
+        public override void SaveAsChordatas(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
         {
             string temp = String.Format("{0},{1},{2},{3},{4}",
                                 dataGridColumns[0].Header.ToString(),
