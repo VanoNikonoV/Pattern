@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Controls;
 using Pattern.Models.Save;
+using System.Windows;
 
 namespace Pattern.ViewModels
 {
@@ -17,6 +18,9 @@ namespace Pattern.ViewModels
 
         private ObservableCollection<Chordata>? reposipory;
 
+        /// <summary>
+        /// Коллекция с существаими полученная из базы данных
+        /// </summary>
         public ObservableCollection<Chordata>? Reposipory 
         { 
             get 
@@ -64,6 +68,9 @@ namespace Pattern.ViewModels
         #endregion
 
         #region Методы
+        /// <summary>
+        /// Добавления существа
+        /// </summary>
         private async void AddChordataAsync()
         {
             AddChordataWindow addChordataWindow = new AddChordataWindow()
@@ -121,6 +128,7 @@ namespace Pattern.ViewModels
 
             await ChordataContext.SaveChangesAsync();
         }
+
         /// <summary>
         /// Метод сохранения данных в разных форматах
         /// </summary>
@@ -141,32 +149,36 @@ namespace Pattern.ViewModels
                 {
                     case 1:
 
-                        KeeperSaveWord keeperSaveWord = new KeeperSaveWord(fileName);
+                        //KeeperSaveWord keeperSaveWord = new KeeperSaveWord(fileName);
+                        KeeperSave keeperSaveWord = KeeperSaveFactory.GetKeeperSave(typeof(KeeperSaveWord), fileName);
 
-                        keeperSaveWord.SaveAsChordatas(Reposipory, dataGridColumns);
+                        keeperSaveWord.SaveAsChordatasAsync(Reposipory, dataGridColumns);
 
                         break;
 
                     case 2:
 
-                        KeeperSaveExel keeperSaveExel = new KeeperSaveExel(fileName);
+                        //KeeperSaveExel keeperSaveExel = new KeeperSaveExel(fileName);
+                        KeeperSave keeperSaveExel = KeeperSaveFactory.GetKeeperSave(typeof(KeeperSaveExel), fileName);
 
-                        keeperSaveExel.SaveAsChordatas(Reposipory, dataGridColumns);
+                        keeperSaveExel.SaveAsChordatasAsync(Reposipory, dataGridColumns);
 
                         break;
 
                     case 3:
 
                         KeeperSave keeperSaveTxt = KeeperSaveFactory.GetKeeperSave(typeof(KeeperSaveTxt), fileName);
-                        
-                        ///KeeperSaveTxt keeperSaveTxt = new KeeperSaveTxt(fileName);
 
-                        keeperSaveTxt.SaveAsChordatas(Reposipory, dataGridColumns);
+                        keeperSaveTxt.SaveAsChordatasAsync(Reposipory, dataGridColumns);
 
                     break;
 
+                    default: MessageBox.Show("Данный формат не доступен", 
+                                    "Неверный выбор", 
+                                    MessageBoxButton.OK, 
+                                    MessageBoxImage.Exclamation); 
+                                    break;
                 }
-
             }
            
             

@@ -6,16 +6,20 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace Pattern.Models.Save
 {
-    public  class KeeperSaveWord : IChordataSave
+    /// <summary>
+    /// Класс для сохраненияя данных о существах в формате .docx
+    /// </summary>
+    public class KeeperSaveWord : KeeperSave
     {
-        private string nameOfFile;
+        /// <summary>
+        /// Коструктор для сохраненияя данных о существах в формате .docx
+        /// </summary>
+        /// <param name="NameOfFile">Имя файла</param>
+        public KeeperSaveWord(string NameOfFile): base(NameOfFile) { }
+      
 
-        public KeeperSaveWord(string NameOfFile)
-        {
-            this.nameOfFile = NameOfFile;
-        }
-
-        public void SaveAsChordatas(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
+        public override void SaveAsChordatasAsync(ObservableCollection<Chordata> animal, 
+            ObservableCollection<DataGridColumn> dataGridColumns)
         {
             Word.Application winword = new Word.Application();
 
@@ -24,22 +28,22 @@ namespace Pattern.Models.Save
             object missing = System.Reflection.Missing.Value;
 
             //Создание нового документа
-            Microsoft.Office.Interop.Word.Document document =
+            Word.Document document =
                 winword.Documents.Add(ref missing, ref missing, ref missing, ref missing);
 
             //Добавление текста со стилем Заголовок 1
-            Microsoft.Office.Interop.Word.Paragraph para1 = document.Content.Paragraphs.Add(ref missing);
+            Word.Paragraph para1 = document.Content.Paragraphs.Add(ref missing);
             object styleHeading1 = "Заголовок 1";
             para1.Range.set_Style(styleHeading1);
             para1.Range.Text = "Даны из приложения";
             para1.Range.InsertParagraphAfter();
+            
 
-            //Создание таблицы 5х5
-            Word.Table firstTable = document.Tables.Add(para1.Range, NumRows: animal.Count +1, NumColumns: dataGridColumns.Count, ref missing, ref missing);
+            //Создание таблицы, колличество строк больше на 1, так ка добавляется шапка таблицы
+            Word.Table firstTable = document.Tables.Add(para1.Range, NumRows: animal.Count +1, 
+                NumColumns: dataGridColumns.Count, ref missing, ref missing);
 
             firstTable.Borders.Enable = 1;
-
-            int count = animal.Count;
 
             int y = default;
 
@@ -52,7 +56,6 @@ namespace Pattern.Models.Save
                     //Заголовок таблицы
                     if (cell.RowIndex == 1)
                     {
-                        
                         cell.Range.Text = dataGridColumns[x].Header.ToString();
 
                         cell.Range.Font.Bold = 1;
@@ -70,8 +73,6 @@ namespace Pattern.Models.Save
                     //Значения ячеек
                     else
                     {
-                        Debug.WriteLine(cell.ColumnIndex);
-
                         switch (cell.ColumnIndex)
                         {
                             case 1: cell.Range.Text = animal[y].Id.ToString(); break;
@@ -90,7 +91,7 @@ namespace Pattern.Models.Save
             winword.Visible = true;
 
             //Сохранение документа
-            object filename = nameOfFile as object;
+            object filename = this.NameOfFile as object;
             document.SaveAs(ref filename);
             //Закрытие текущего документа
             document.Close(ref missing, ref missing, ref missing);

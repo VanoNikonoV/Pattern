@@ -1,22 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Pattern.Models.Save
 {
+    /// <summary>
+    /// Абстрактный класс для сохраненияя данных о существах 
+    /// </summary>
     public abstract class KeeperSave : IChordataSave
     {
-        private string nameOfFile;
+        /// <summary>
+        /// Имя файла для сохранения
+        /// </summary>
+        public string NameOfFile { get; private set; }
         public KeeperSave(string NameOfFile)
         {
-            this.nameOfFile = NameOfFile;
+            this.NameOfFile = NameOfFile;
         }
 
-        public virtual void SaveAsChordatas(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
+        /// <summary>
+        /// Метод сохранения данных о существах
+        /// </summary>
+        /// <param name="animal">Коллекция существ</param>
+        /// <param name="dataGridColumns">Коллекция колонок из DataGride</param>
+        /// <exception cref="NotImplementedException"></exception>
+        public virtual void SaveAsChordatasAsync(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
         {
             throw new NotImplementedException();
         }

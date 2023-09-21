@@ -1,40 +1,43 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
+using System.Formats.Asn1;
+using System.Globalization;
 using System.IO;
+using System.Net.Mail;
 using System.Text;
 using System.Windows.Controls;
 
 namespace Pattern.Models.Save
 {
-    public class KeeperSaveExel : IChordataSave
+    /// <summary>
+    /// Класс для сохраненияя данных о существах в формате .csv
+    /// </summary>
+    public class KeeperSaveExel : KeeperSave
     {
-        private string nameOfFile;
-
-        public KeeperSaveExel(string NameOfFile)
+        /// <summary>
+        /// Коструктор для сохраненияя данных о существах в формате .csv
+        /// </summary>
+        /// <param name="NameOfFile">Имя файла</param>
+        public KeeperSaveExel(string NameOfFile) : base(NameOfFile) { }
+      
+        public override async void SaveAsChordatasAsync(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
         {
-            this.nameOfFile = NameOfFile;
-        }
-        public async void SaveAsChordatas(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
-        {
-            string temp = String.Format("{0},{1},{2},{3},{4}",
-                               dataGridColumns[0].Header.ToString(),
-                               dataGridColumns[1].Header.ToString(),
-                               dataGridColumns[2].Header.ToString(),
-                               dataGridColumns[3].Header.ToString(),
-                               dataGridColumns[4].Header.ToString());
-
-            await File.AppendAllTextAsync(nameOfFile, $"{temp}\n");
-
-            for (int i = 0; i < animal.Count; i++)
+            using (StreamWriter sw = new StreamWriter(NameOfFile, false, Encoding.Unicode))
             {
-                temp = String.Format("{0},{1},{2},{3},{4}",
-                                        animal[i].Id,
-                                        animal[i].NameClass,
-                                        animal[i].LivingEnvironment,
-                                        animal[i].Size,
-                                        animal[i].Detachment);
-                await File.AppendAllTextAsync(nameOfFile, $"{temp}\n");
+                for (int i = 0; i < dataGridColumns.Count; i++)
+                {
+                    await sw.WriteAsync($"{dataGridColumns[i].Header}\t");
+                }
+
+                for (int i = 0; i < animal.Count; i++)
+                {
+                    await sw.WriteAsync($"\n{animal[i].Id}\t");
+                    await sw.WriteAsync($"{animal[i].NameClass}\t");
+                    await sw.WriteAsync($"{animal[i].LivingEnvironment}\t"); 
+                    await sw.WriteAsync($"{animal[i].Size}\t");
+                    await sw.WriteAsync($"{animal[i].Detachment}\t");
+                }
             }
         }
     }

@@ -6,6 +6,6 @@ namespace Pattern.Models.Save
 {
     public interface IChordataSave
     {
-        void SaveAsChordatas(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns);
+        void SaveAsChordatasAsync(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns);
     }
 }

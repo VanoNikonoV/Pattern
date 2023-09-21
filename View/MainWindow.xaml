@@ -141,11 +141,9 @@
                   Grid.Column="2"
                   AutoGenerateColumns="False"
                   IsSynchronizedWithCurrentItem="True"
-                  ItemsSource="{Binding Reposipory, 
-                  UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding Reposipory}"
                   SelectionMode="Single"
                   CanUserAddRows="False">
-            
             <DataGrid.Columns>
 
                 <DataGridTextColumn Binding="{Binding Id}" 
