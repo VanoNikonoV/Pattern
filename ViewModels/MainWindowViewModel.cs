@@ -159,7 +159,7 @@ namespace Pattern.ViewModels
                     case 2:
 
                         //KeeperSaveExel keeperSaveExel = new KeeperSaveExel(fileName);
-                        KeeperSave keeperSaveExel = KeeperSaveFactory.GetKeeperSave(typeof(KeeperSaveExel), fileName);
+                        KeeperSave keeperSaveExel = KeeperSaveFactory.GetKeeperSave(typeof(KeeperSaveExсel), fileName);
 
                         keeperSaveExel.SaveAsChordatasAsync(Reposipory, dataGridColumns);
 

@@ -13,13 +13,13 @@ namespace Pattern.Models.Save
     /// <summary>
     /// Класс для сохраненияя данных о существах в формате .csv
     /// </summary>
-    public class KeeperSaveExel : KeeperSave
+    public class KeeperSaveExсel : KeeperSave
     {
         /// <summary>
         /// Коструктор для сохраненияя данных о существах в формате .csv
         /// </summary>
         /// <param name="NameOfFile">Имя файла</param>
-        public KeeperSaveExel(string NameOfFile) : base(NameOfFile) { }
+        public KeeperSaveExсel(string NameOfFile) : base(NameOfFile) { }
       
         public override async void SaveAsChordatasAsync(ObservableCollection<Chordata> animal, ObservableCollection<DataGridColumn> dataGridColumns)
         {
